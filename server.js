@@ -1,29 +1,78 @@
 'use strict';
 
+// -------------------
+// #5 Extending Router
+// -------------------
+
 var http = require('http');
+var url = require('url');
 
-// -----------------
-// #3 Modularization
-// -----------------
-
-function start() {
+function start(route) {
   function onRequest(req, res) {
-    console.log('Request received.');
+    var pathname = url.parse(req.url).pathname;
+    console.log('Request for ', pathname, ' received.');
+
+    route(pathname);
+
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.write('Hello World');
-    res.end();
+    res.end;
   }
 
   http.createServer(onRequest).listen(8888);
-  console.log('Server has started');
+  console.log('Server has started.');
 }
 
 exports.start = start;
 
+// ------------------
+// #4 Starting Routes
+// ------------------
+//
+// var http = require('http');
+// var url = require('url');
+//
+// function start() {
+//   function onRequest(req, res) {
+//     var pathname = url.parse(req.url).pathname;
+//     console.log('Request for ', pathname, ' recieved.');
+//     res.writeHead(200, {'Content-Type': 'text/plain'});
+//     res.write('Hellow World');
+//     res.end();
+//   }
+//
+//   http.createServer(onRequest).listen(8888);
+//   console.log('Server has started.');
+// }
+//
+// exports.start = start;
+
+// -----------------
+// #3 Modularization
+// -----------------
+//
+// var http = require('http');
+//
+// function start() {
+//   function onRequest(req, res) {
+//     console.log('Request received.');
+//     res.writeHead(200, {'Content-Type': 'text/plain'});
+//     res.write('Hello World');
+//     res.end();
+//   }
+//
+//   http.createServer(onRequest).listen(8888);
+//   console.log('Server has started');
+// }
+//
+// exports.start = start;
+
 // -----------------
 // #2 Asynch Example
 // -----------------
-
+//
+// var http = require('http');
+//
 // function onRequest(req, res) {
 //   console.log('Request received.');
 //   res.writeHead(200, {'Content-Type': 'text/plain'});
@@ -38,7 +87,9 @@ exports.start = start;
 // -------------
 // #1 Intro Code
 // -------------
-
+//
+// var http = require('http');
+//
 // http.createServer(function(req, res) {
 //   res.writeHead(200, {'Content-Type': 'text/plain'});
 //   res.write('Hello World');
