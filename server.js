@@ -2,16 +2,38 @@
 
 var http = require('http');
 
-function onRequest(req, res) {
-  console.log('Request received.');
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.write('Hello World');
-  res.end();
+// -----------------
+// #3 Modularization
+// -----------------
+
+function start() {
+  function onRequest(req, res) {
+    console.log('Request received.');
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.write('Hello World');
+    res.end();
+  }
+
+  http.createServer(onRequest).listen(8888);
+  console.log('Server has started');
 }
 
-http.createServer(onRequest).listen(8888);
+exports.start = start;
 
-console.log('Server has started.');
+// -----------------
+// #2 Asynch Example
+// -----------------
+
+// function onRequest(req, res) {
+//   console.log('Request received.');
+//   res.writeHead(200, {'Content-Type': 'text/plain'});
+//   res.write('Hello World');
+//   res.end();
+// }
+//
+// http.createServer(onRequest).listen(8888);
+//
+// console.log('Server has started.');
 
 // -------------
 // #1 Intro Code
