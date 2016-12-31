@@ -1,8 +1,9 @@
 'use strict';
 
-// ---------------
-// #6 Non-blocking
-// ---------------
+
+// ----------------
+// #7: post uploads
+// ----------------
 
 var http = require('http');
 var url = require('url');
@@ -10,9 +11,8 @@ var url = require('url');
 function start(route, handle) {
   function onRequest(req, res) {
     var pathname = url.parse(req.url).pathname;
-    console.log('Request for ', pathname, 'recieved.');
-
-    route(handle, pathname, res);
+    console.log('Request for ', pathname, 'received.');
+    route(handle, pathname, res, req);
   }
 
   http.createServer(onRequest).listen(8888);
@@ -20,6 +20,28 @@ function start(route, handle) {
 }
 
 exports.start = start;
+
+// ---------------
+// #6 Non-blocking
+// ---------------
+
+// var http = require('http');
+// var url = require('url');
+// var formidable = require('formidable');
+//
+// function start(route, handle) {
+//   function onRequest(req, res) {
+//     var pathname = url.parse(req.url).pathname;
+//     console.log('Request for ', pathname, 'recieved.');
+//
+//     route(handle, pathname, res);
+//   }
+//
+//   http.createServer(onRequest).listen(8888);
+//   console.log('Server has started.');
+// }
+//
+// exports.start = start;
 
 // -------------------
 // #5 Extending Router
