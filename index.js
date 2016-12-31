@@ -3,7 +3,6 @@
 var server = require('./server.js');
 var router = require('./router.js');
 var requestHandlers = require('./requestHandlers.js');
-var formidable = require('formidable');
 
 var handle = {};
 handle['/'] = requestHandlers.start;
